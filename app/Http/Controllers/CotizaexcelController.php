@@ -17,25 +17,10 @@ class CotizaexcelController extends Controller
      */
     public function index()
     {
-       
-        $contado = '449.01';
-        $inicial = '29';
-        $plazo = '12';
-
-        $inputFileType = 'Xlsx';
-        $reader = IOFactory::createReader($inputFileType);
-        $reader->setLoadSheetsOnly(["BARATODO_TV","Cotizador"]);
-        $spreadsheet = $reader->load("storage/cotiza.xlsx");
-        $sheet = $spreadsheet->getActiveSheet();
-        $sheet->setCellValue('E4', $contado);
-        $sheet->setCellValue('E5', $inicial);
-        $sheet->setCellValue('E7', $plazo);
-        
-        $dataArray = $spreadsheet->getActiveSheet()->rangeToArray('E4:E11', NULL, TRUE, TRUE, TRUE);
-
-       dd($dataArray);
-       //echo $dataArray;
-
+        $pfactura = '';
+        $vcuota = '';
+        $pfinal ='';
+        return view('cotizador.index', compact('pfactura', 'vcuota', 'pfinal'));
     }
 
     /**
@@ -54,9 +39,37 @@ class CotizaexcelController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function calcular(Request $request)
     {
-        //
+        dd($request->all());
+        
+        $contado = $request->contado;
+        $inicial = $request->inicial;
+        $plazo = $request->plazo;
+        $inputFileType = 'Xlsx';
+        $reader = IOFactory::createReader($inputFileType);
+        $reader->setLoadSheetsOnly(["BARATODO_TV","Cotizador"]);
+        $spreadsheet = $reader->load("storage/cotiza.xlsx");
+        $sheet = $spreadsheet->getActiveSheet();
+        $sheet->setCellValue('E4', $contado);
+        $sheet->setCellValue('E5', $inicial);
+        $sheet->setCellValue('E7', $plazo);
+        $dataArray = $spreadsheet->getActiveSheet()->rangeToArray('E4:E11', NULL, TRUE, TRUE, TRUE);
+
+       $row8 = $dataArray[8];
+       $pfactura = number_format($row8['E'], 2, '.', '');
+       $row10 = $dataArray[10];
+       $vcuota = number_format($row10['E'], 2, '.', '');
+       $row11 = $dataArray[11];
+       $pfinal = number_format($row11['E'], 2, '.', '');
+    
+       $resultado = array($pfactura, $vcuota, $pfinal);
+       return response()->json($resultado);
+       //return response()->json('Precio Factura: '.$pfactura.' Cuota:'.$vcuota);
+
+
+       //return view('cotizador.show', compact('pfactura', 'vcuota', 'pfinal'));
+       //return back()->with($pfactura, $vcuota, $pfinal); 
     }
 
     /**
