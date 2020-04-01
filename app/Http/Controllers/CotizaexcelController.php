@@ -7,6 +7,7 @@ use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 use PhpOffice\PhpSpreadsheet\IOFactory;
 use Illuminate\Support\Facades\Storage;
+use Validator;
 
 class CotizaexcelController extends Controller
 {
@@ -17,10 +18,7 @@ class CotizaexcelController extends Controller
      */
     public function index()
     {
-        $pfactura = '';
-        $vcuota = '';
-        $pfinal ='';
-        return view('cotizador.index', compact('pfactura', 'vcuota', 'pfinal'));
+        return view('cotizador.index');
     }
 
     /**
@@ -28,11 +26,30 @@ class CotizaexcelController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function subirarchivo()
     {
-        //
+        return view('cotizador.archivos');
     }
 
+    public function guardararchivo(Request $request)
+    {
+        //dd($request->all());
+        $validacion = Validator::make($request->all(), [
+        'filenew' => 'file|mimes:pdf,xlsx,xls|max:10240']);
+        if($validacion->fails()){
+        return back()->withInput()->with('error','La informacion NO fue enviada')->withErrors($validacion->errors());
+        }
+
+        if($request->hasFile('filenew')){
+        $file= $request->file('filenew');
+        $filename = $file->getClientOriginalName(); //coloca nombre Original del archivo
+        //almacena el archivo dentro de la carpeta public
+        $path= $request->file('filenew')->storeAs('public/archivos', $filename);
+        return back()->withInput()->with('info','Archivo almacenado con exito');
+        }
+
+
+    }
     /**
      * Store a newly created resource in storage.
      *
@@ -41,8 +58,6 @@ class CotizaexcelController extends Controller
      */
     public function calcular(Request $request)
     {
-        dd($request->all());
-        
         $contado = $request->contado;
         $inicial = $request->inicial;
         $plazo = $request->plazo;
@@ -55,21 +70,15 @@ class CotizaexcelController extends Controller
         $sheet->setCellValue('E5', $inicial);
         $sheet->setCellValue('E7', $plazo);
         $dataArray = $spreadsheet->getActiveSheet()->rangeToArray('E4:E11', NULL, TRUE, TRUE, TRUE);
-
        $row8 = $dataArray[8];
        $pfactura = number_format($row8['E'], 2, '.', '');
        $row10 = $dataArray[10];
        $vcuota = number_format($row10['E'], 2, '.', '');
        $row11 = $dataArray[11];
-       $pfinal = number_format($row11['E'], 2, '.', '');
-    
+       $pfinal = number_format($row11['E'], 2, '.', '');    
        $resultado = array($pfactura, $vcuota, $pfinal);
        return response()->json($resultado);
-       //return response()->json('Precio Factura: '.$pfactura.' Cuota:'.$vcuota);
 
-
-       //return view('cotizador.show', compact('pfactura', 'vcuota', 'pfinal'));
-       //return back()->with($pfactura, $vcuota, $pfinal); 
     }
 
     /**
