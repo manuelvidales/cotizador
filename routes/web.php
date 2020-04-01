@@ -14,10 +14,12 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('cotizador.index');
 });
 
 Route::get('/index', 'CotizaexcelController@index')->name('index');
+Route::post('/cotizador', 'CotizaexcelController@calcular')->name('cotizarexcel');
+//Route::get('/show', 'CotizaexcelController@index')->name('index');
 
 Auth::routes();
 
