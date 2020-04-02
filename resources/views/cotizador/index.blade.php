@@ -7,7 +7,7 @@
             <div class="card">
                 <div class="card-header">
                     <div class="alert alert-success text-center" role="alert">
-                      <h3><strong>COTIZADOR </strong></h3>
+                      <h2><strong>COTIZADOR </strong></h2>
                        </div>
                 </div>
                 <div class="card-body">
@@ -51,7 +51,7 @@
                     <button type="submit" class="btn btn-success btn-lg btn-block"> CALCULAR CUOTAS <i class="fas fa-calculator fa-lg"></i></button>
                   </div>
                 </form>
-              <hr>
+              <br>
               <div class="card-footer" >
                 <div id="resultados"> </div>
               </div>

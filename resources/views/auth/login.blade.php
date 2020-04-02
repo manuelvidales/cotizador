@@ -12,7 +12,7 @@
                         @csrf
 
                         <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('EMail') }}</label>
+                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('Email') }}</label>
 
                             <div class="col-md-6">
                                 <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
@@ -45,13 +45,13 @@
                                     <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
 
                                     <label class="form-check-label" for="remember">
-                                        {{ __('Remember Me') }}
+                                        {{ __('Recuérdame') }}
                                     </label>
                                 </div>
                             </div>
                         </div>
                             <button type="submit" class="btn btn-primary btn-block btn-lg">
-                                <i class="fas fa-lock"></i> {{ __('Login') }}
+                                <i class="fas fa-lock fa-lg"></i> {{ __('Login') }}
                             </button>
                     </form>
                 </div>

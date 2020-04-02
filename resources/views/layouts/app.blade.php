@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'Cotizador') }}</title>
 
     <!-- Scripts -->
 
@@ -33,7 +33,7 @@
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
+                    {{ config('app.name', 'Cotizador') }}
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -44,10 +44,10 @@
                     @auth
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('subirarchivos') }}"><i class="fas fa-folder-open"></i> Archivos</a>
+                            <a class="nav-link" href="{{ route('subirarchivos') }}"><i class="fas fa-folder-open fa-lg"></i> Archivos</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('cotizar') }}"><i class="fas fa-dollar-sign"></i> Cotizador</a>
+                            <a class="nav-link" href="{{ route('cotizar') }}"><i class="fas fa-dollar-sign fa-lg"></i> Cotizador</a>
                         </li>
                     </ul>
                     @endauth
@@ -56,11 +56,11 @@
                         <!-- Authentication Links -->
                         @guest
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}"><i class="fas fa-sign-in-alt"></i> {{ __('Login') }}</a>
+                                <a class="nav-link" href="{{ route('login') }}"><i class="fas fa-door-open fa-lg"></i> {{ __('Login') }}</a>
                             </li>
                             @if (Route::has('register'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                    <a class="nav-link" href="{{ route('register') }}"><i class="fas fa-user-plus fa-lg"></i> {{ __('Registrarse') }}</a>
                                 </li>
                             @endif
                         @else
@@ -74,8 +74,8 @@
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                        <i class="fas fa-power-off fa-sm"></i>
-                                        {{ __('Logout') }}
+                                        <i class="fas fa-power-off fa-lg"></i>
+                                        {{ __('Cerrar sesión') }}
                                     </a>
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
@@ -116,7 +116,7 @@
         </div>
     </div>
 @endif
-        <main class="py-4">
+        <main class="py-2">
             @yield('content')
         </main>
     </div>
