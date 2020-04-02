@@ -46,9 +46,6 @@ $('#formcotizar').submit(function(e){
                 </table>
                 </div>
                 </div>`);
-        $(input1).val('');
-        $(input2).val('');
-        $(input3).val('Selecionar...');          
         },
         error: function(error){
             $(msg).html('');
@@ -56,7 +53,7 @@ $('#formcotizar').submit(function(e){
               $(msg).prepend(`
               <div class="alert alert-danger">
                 <p>Error al consultar: Revise los campos y Vuelva a intentarlo</p>
-                <p><strong>Prube borrando las cookies</strong></p>
+                <p><strong>Tambien puede borrar las cookies</strong></p>
               </div>`);
         }
     });
