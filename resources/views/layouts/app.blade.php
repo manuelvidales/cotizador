@@ -43,16 +43,29 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
-                    @auth
-                    <ul class="navbar-nav mr-auto">
+                <ul class="navbar-nav mr-auto">
+                    @role('admin')
+                            <li class="nav-item">
+                            <a class="nav-link" href="{{ url('/admin/permissions') }}"><i class="fas fa-users-cog fa-lg"></i> Sistema</a>
+                        </li>
+                    @endrole
+                    @role('manager')
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('subirarchivos') }}"><i class="fas fa-folder-open fa-lg"></i> Archivos</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('cotizar') }}"><i class="fas fa-dollar-sign fa-lg"></i> Cotizador</a>
                         </li>
-                    </ul>
-                    @endauth
+                    @endrole
+                    @role('user')
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('subirarchivos') }}"><i class="fas fa-folder-open fa-lg"></i> Archivos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('cotizar') }}"><i class="fas fa-dollar-sign fa-lg"></i> Cotizador</a>
+                        </li>
+                    @endrole
+                </ul>
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->

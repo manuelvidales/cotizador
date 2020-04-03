@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "5bc9415e5feab916364fce96a7b71794",
+    "content-hash": "7130016a49091d6b0ddca73bb346f8f6",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -102,6 +102,53 @@
                 "math"
             ],
             "time": "2020-02-17T13:57:43+00:00"
+        },
+        {
+            "name": "codexshaper/laravel-permission",
+            "version": "v1.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Codexshaper/laravel-permission.git",
+                "reference": "9a55cda8e96a66339a22bd2fe0e2adb048f6bb29"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Codexshaper/laravel-permission/zipball/9a55cda8e96a66339a22bd2fe0e2adb048f6bb29",
+                "reference": "9a55cda8e96a66339a22bd2fe0e2adb048f6bb29",
+                "shasum": ""
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "CodexShaper\\Permission\\PermissionServiceProvider"
+                    ],
+                    "aliases": {
+                        "Permission": "CodexShaper\\Permission\\Facades\\Permission",
+                        "Role": "CodexShaper\\Permission\\Models\\Role",
+                        "RolePermission": "CodexShaper\\Permission\\Models\\Permission",
+                        "HasRoles": "CodexShaper\\Permission\\Traits\\HasRoles",
+                        "HasPermissions": "CodexShaper\\Permission\\Traits\\HasPermissions"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "CodexShaper\\Permission\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Md Abu Ahsan Basir",
+                    "email": "maab.career@gmail.com"
+                }
+            ],
+            "description": "Laravel Multiple Authentication",
+            "time": "2020-03-23T13:26:51+00:00"
         },
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -728,6 +775,7 @@
                     "email": "jakub.onderka@gmail.com"
                 }
             ],
+            "abandoned": "php-parallel-lint/php-console-color",
             "time": "2018-09-29T17:23:10+00:00"
         },
         {
@@ -774,6 +822,7 @@
                 }
             ],
             "description": "Highlight PHP code in terminal",
+            "abandoned": "php-parallel-lint/php-console-highlighter",
             "time": "2018-09-29T18:48:56+00:00"
         },
         {
