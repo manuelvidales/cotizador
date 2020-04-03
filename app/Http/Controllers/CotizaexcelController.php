@@ -30,13 +30,7 @@ class CotizaexcelController extends Controller
      */
     public function subirarchivo()
     {
-    //    $docs = Storage::disk('documentos')->files('');
-    //    $myCollectionObj = collect($docs);
-    //    $files = $this->paginate($myCollectionObj);
-    //     //return view('cotizador.archivos', compact('files'));
-    //     return response()->json();
-
-    return view('cotizador.archivos');
+    return view('cotizador.archivos')->with('info','Archivo almacenado con exito');;
     }
 
     public function mostrararchivos()
@@ -104,8 +98,6 @@ class CotizaexcelController extends Controller
     public function show($id)
     {
         return Storage::download('archivos/'.$id);
-        
-        //return back()->withInput()->with('info','Archivo eliminado con exito');
     }
 
 
