@@ -3,10 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use PhpOffice\PhpSpreadsheet\Spreadsheet;
-use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
+//use PhpOffice\PhpSpreadsheet\Spreadsheet;
+//use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 use PhpOffice\PhpSpreadsheet\IOFactory;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Collection;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class CotizaexcelController extends Controller
 {
@@ -27,21 +30,35 @@ class CotizaexcelController extends Controller
      */
     public function subirarchivo()
     {
-        return view('cotizador.archivos');
+    //    $docs = Storage::disk('documentos')->files('');
+    //    $myCollectionObj = collect($docs);
+    //    $files = $this->paginate($myCollectionObj);
+    //     //return view('cotizador.archivos', compact('files'));
+    //     return response()->json();
+
+    return view('cotizador.archivos');
+    }
+
+    public function mostrararchivos()
+    {
+       $docs = Storage::disk('documentos')->files('');
+    //    $myCollectionObj = collect($docs);
+    //    $files = $this->paginate($myCollectionObj);
+        return response()->json($docs);
     }
 
     public function guardararchivo(Request $request)
     {
         $validacion = $request->validate([
         'filenew' => 'file|mimes:pdf,xlsx,xls|max:10240']);
-        if($validacion->fails()){
-        return back()->withInput()->with('error','La informacion NO fue enviada')->withErrors($validacion->errors());
-        }
+        // if($validacion->fails()){
+        // return back()->withInput()->with('error','La informacion NO fue enviada')->withErrors($validacion->errors());
+        // }
         if($request->hasFile('filenew')){
         $file= $request->file('filenew');
         $filename = $file->getClientOriginalName(); //coloca nombre Original del archivo
         //almacena el archivo dentro de la carpeta public
-        $path= $request->file('filenew')->storeAs('public/archivos', $filename);
+        $path= $request->file('filenew')->storeAs('archivos', $filename);
         return back()->withInput()->with('info','Archivo almacenado con exito');
         }
 
@@ -86,18 +103,20 @@ class CotizaexcelController extends Controller
      */
     public function show($id)
     {
-        //
+        return Storage::download('archivos/'.$id);
+        
+        //return back()->withInput()->with('info','Archivo eliminado con exito');
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
+
+    public function paginate($items, $perPage = 5, $page = null)
     {
-        //
+    $page = $page ?: (Paginator::resolveCurrentPage() ?: 1);
+    $items = $items instanceof Collection ? $items : Collection::make($items);
+    return new LengthAwarePaginator($items->forPage($page, $perPage), $items->count(), $perPage, $page, [
+    'path' => Paginator::resolveCurrentPath(),
+    'pageName' => 'page',
+    ]);
     }
 
     /**
@@ -120,6 +139,8 @@ class CotizaexcelController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Storage::delete('archivos/'.$id);
+
+        return $this->subirarchivo();
     }
 }

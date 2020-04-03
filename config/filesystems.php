@@ -50,7 +50,7 @@ return [
 
         'public' => [
             'driver' => 'local',
-            'root' => storage_path('app/public'),
+            'root' => storage_path('app/public/'),
             'url' => env('APP_URL').'/storage',
             'visibility' => 'public',
         ],
@@ -62,6 +62,12 @@ return [
             'region' => env('AWS_DEFAULT_REGION'),
             'bucket' => env('AWS_BUCKET'),
             'endpoint' => env('AWS_URL'),
+        ],
+        'documentos' => [
+            'driver' => 'local',
+            'root' => storage_path('app/archivos'),
+            'url' => env('APP_URL').'/storage',
+            'visibility' => 'public',
         ],
 
     ],

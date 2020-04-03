@@ -21,6 +21,9 @@ Route::get('/', 'HomeController@index');
 
 Auth::routes();
 Route::get('/archivos', 'CotizaexcelController@subirarchivo')->name('subirarchivos');
+Route::get('/mostrararchivos', 'CotizaexcelController@mostrararchivos')->name('mostrararchivos');
 Route::post('/filesend', 'CotizaexcelController@guardararchivo')->name('filesave');
 Route::get('/cotizar', 'CotizaexcelController@index')->name('cotizar');
 Route::post('/cotizador', 'CotizaexcelController@calcular')->name('cotizarexcel');
+Route::get('/files/{id}', 'CotizaexcelController@show')->name('verarchivos');
+Route::get('/removefile/{id}', 'CotizaexcelController@destroy')->name('eliminaarchivo');

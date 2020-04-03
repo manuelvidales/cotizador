@@ -31,11 +31,33 @@
             <button type="submit" class="btn btn-success btn-lg btn-block"> <strong>Enviar <i class="fas fa-paper-plane fa-lg"></i></strong> </button>
             </div>
         </form>
-                
-                </div>
+<hr>
+        <div class=".col">
+            <li class="list-group-item"><button type="button" class="btn btn-outline-secondary btn-lg btn-block documentos"> <i class="far fa-folder"></i><strong>://Documentos</strong> </button></li>
+        </div>
+        
+    <br>
+        <div class=".col">
+                <!-- tabla archivos-->
+
+                <table class="table table-hover .table-responsive table-sm">
+                    <thead>
+                      <tr>
+                        <th scope="col">Nombre de archivo</th>
+                        <th scope="col">Acciones</th>
+                      </tr>
+                    </thead>
+                    <tbody id="mostrararchivos">
+                        
+                    </tbody>
+                    </table>             
+            </div>
+        <div id="paginate"></div>    
             </div>
         </div>
     </div>
+    </div>
+
 <script>
 // leer nombre del archivo
 $(".custom-file-input").on("change", function() {
@@ -43,5 +65,6 @@ $(".custom-file-input").on("change", function() {
   $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
 });
 </script>
+<script src="{{ asset('js/archivos.js')}}" ></script>
 </div>
 @endsection
