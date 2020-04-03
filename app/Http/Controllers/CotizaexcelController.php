@@ -7,7 +7,6 @@ use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 use PhpOffice\PhpSpreadsheet\IOFactory;
 use Illuminate\Support\Facades\Storage;
-use Validator;
 
 class CotizaexcelController extends Controller
 {
@@ -33,13 +32,11 @@ class CotizaexcelController extends Controller
 
     public function guardararchivo(Request $request)
     {
-        //dd($request->all());
-        $validacion = Validator::make($request->all(), [
+        $validacion = $request->validate([
         'filenew' => 'file|mimes:pdf,xlsx,xls|max:10240']);
         if($validacion->fails()){
         return back()->withInput()->with('error','La informacion NO fue enviada')->withErrors($validacion->errors());
         }
-
         if($request->hasFile('filenew')){
         $file= $request->file('filenew');
         $filename = $file->getClientOriginalName(); //coloca nombre Original del archivo
