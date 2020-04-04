@@ -3,20 +3,20 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">Dashboard</div>
-
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                    You are logged in!
-                </div>
-            </div>
+        <div class=".col">
+            
+            <ul class="list-group list-group-horizontal">
+                <li class="list-group-item">
+                    <div class="shadow p-3 mb-5 bg-white rounded">
+                    <div class="alert alert-primary text-center" role="alert">
+                        
+                            <h1 class="display-4">!Bienvenido!</h1>
+                            
+                    </div>                           
+                    </div>
+                </li>
+            </ul>
+            
         </div>
     </div>
 </div>

@@ -44,26 +44,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                 <ul class="navbar-nav mr-auto">
-                    @role('admin')
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ url('/admin/permissions') }}"><i class="fas fa-users-cog fa-lg"></i> Sistema</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('subirarchivos') }}"><i class="fas fa-folder-open fa-lg"></i> Archivos</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('cotizar') }}"><i class="fas fa-dollar-sign fa-lg"></i> Cotizador</a>
-                    </li>
-                    @else
-                        @auth
-                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('subirarchivos') }}"><i class="fas fa-folder-open fa-lg"></i> Archivos</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('cotizar') }}"><i class="fas fa-dollar-sign fa-lg"></i> Cotizador</a>
-                        </li>
-                        @endauth
-                    @endrole
+
                 </ul>
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
@@ -102,34 +83,6 @@
                 </div>
             </div>
         </nav>
-<!-- Alertas -->
-@if (session('info'))
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-8 col-md-offset-2" id="alerta">
-                <div class="alert alert-success" role="alert">
-                    <strong>Aviso:</strong> {{ session('info') }}
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-@elseif (session('error'))
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-8 col-md-offset-2" id="alerta">
-                <div class="alert alert-danger" role="alert">
-                    <strong>Aviso:</strong> {{ session('error') }}
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-@endif
         <main class="py-2">
             @yield('content')
         </main>

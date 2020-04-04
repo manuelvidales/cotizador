@@ -33,7 +33,11 @@
         </form>
 <hr>
         <div class=".col">
-            <li class="list-group-item"><button type="button" class="btn btn-outline-secondary btn-lg btn-block documentos"> <i class="far fa-folder"></i><strong>://Documentos</strong> </button></li>
+            @role('admin', 'manager')
+            <li class="list-group-item"><button type="button" class="btn btn-outline-secondary btn-lg btn-block documentosall"> <i class="far fa-folder"></i><strong>://Documentos</strong> </button></li>
+            @else            
+            <li class="list-group-item"><button type="button" class="btn btn-outline-info btn-lg btn-block documentos"> <i class="far fa-folder"></i><strong>://Documentos</strong> </button></li>
+            @endrole
         </div>
         
     <br>
@@ -48,9 +52,10 @@
                       </tr>
                     </thead>
                     <tbody id="mostrararchivos">
-                        
                     </tbody>
-                    </table>             
+                    <tbody id="archivosall">
+                    </tbody>
+                </table>             
             </div>
         <div id="paginate"></div>    
             </div>
