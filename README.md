@@ -36,7 +36,7 @@ Se requieren los siguientes paquetes dentro del proyecto:
 
 - Copiar el repositorio y/o clonar con git:
     ~~~
-    git clone https://github.com/manuelvidales/coti.git
+    git clone https://github.com/manuelvidales/cotizador.git
     ~~~
 
 - Correr el composer install:
