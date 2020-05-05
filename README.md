@@ -12,7 +12,7 @@ Sitio web para que al ingresar valores pueda calcular cuotas y precio final, des
     - 1.-login
     - 2.-Registrarse
 
-(1) ingreso al sistema, (2) Registro de nuevos usuarios al registrarse no tienen acceso a los menus hast que el Administrador Otorge algun Rol como: a)Admin, b)Manager y c)User.
+(1) ingreso al sistema, (2) Registro de nuevos usuarios al registrarse no tienen acceso a los menus hasta que el Administrador otorge algun Rol de 3 como: a)Admin, b)Manager y c)User.
 
     - 1.-Sistema
     - 2.-Archivos
@@ -22,10 +22,10 @@ Este sistema cuenta con 3 menus; (1) Panel de administracion, (2) Permite subir 
 
 ## Conocimiento 
 
-    ~~~
+    
     PHP 7.2.24
     Laravel Framework 7.3.0
-    ~~~
+    
 
 Se requieren los siguientes paquetes dentro del proyecto:
 
