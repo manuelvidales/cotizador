@@ -45,6 +45,7 @@
                           <option value="27">27</option>
                           <option value="30">30</option>
                           <option value="36">36</option>
+                          <option value="39">39</option>
                         </select>
                     </div>
                   <div class="d-flex justify-content-center">
