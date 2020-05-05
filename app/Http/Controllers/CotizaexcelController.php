@@ -30,7 +30,7 @@ class CotizaexcelController extends Controller
      */
     public function subirarchivo()
     {
-    return view('cotizador.archivos')->with('info','Archivo almacenado con exito');;
+    return view('cotizador.archivos')->with('info','Archivo almacenado con exito');
     }
 
     public function mostrararchivos()
